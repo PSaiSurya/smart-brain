@@ -114,10 +114,6 @@ class App extends Component {
     this.setState({ input: event.target.value });
   };
 
-  checkURL(url) {
-    return url.match(/\.(jpeg|jpg|gif|png|tiff|webp|bmp)$/) != null;
-  }
-
   updateRank = async () => {
     try {
       const response = await fetch("http://localhost:3000/image", {
@@ -139,8 +135,6 @@ class App extends Component {
     this.setState({ boxes: [] });
     try {
       const URL = this.state.input;
-      const isImage = this.checkURL(URL);
-      if (isImage) {
         const apiResponse = await fetch("http://localhost:3000/imageurl", {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -160,9 +154,6 @@ class App extends Component {
         } else {
           alert(response);
         }
-      } else {
-        alert("Invalid link. Please try again");
-      }
     } catch (error) {
       console.log(error);
     }
